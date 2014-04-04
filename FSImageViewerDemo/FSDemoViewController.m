@@ -49,6 +49,11 @@
     NSArray *images = [self getImagesWithHtml:NO];
     FSBasicImageSource *photoSource = [[FSBasicImageSource alloc] initWithImages:images];
     self.imageViewController = [[FSImageViewerViewController alloc] initWithImageSource:photoSource];
+    
+    // Overriding the background color (if you'd like)
+    self.imageViewController.backgroundColorVisible = [UIColor whiteColor];
+    self.imageViewController.backgroundColorHidden = [UIColor blackColor];
+    
     _imageViewController.delegate = self;
 
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

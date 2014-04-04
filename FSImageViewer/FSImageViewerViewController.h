@@ -69,6 +69,10 @@
 /// Disable image sharing
 @property(assign, nonatomic, getter = isSharingDisabled) BOOL sharingDisabled;
 
+
+@property(strong, nonatomic) UIColor *backgroundColorHidden;
+@property(strong, nonatomic) UIColor *backgroundColorVisible;
+
 /// Current index of the image displayed
 /// @return current index of the image displayed
 - (NSInteger)currentImageIndex;

@@ -50,6 +50,9 @@
 
         self.hidesBottomBarWhenPushed = YES;
         self.wantsFullScreenLayout = YES;
+        
+        self.backgroundColorHidden = [UIColor blackColor];
+        self.backgroundColorVisible = [UIColor whiteColor];
 
         _imageSource = aImageSource;
         pageIndex = imageIndex;
@@ -82,7 +85,7 @@
 	}
 #endif
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = self.backgroundColorHidden;
 
     if (!_scrollView) {
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -255,7 +258,7 @@
     [self.navigationController setNavigationBarHidden:hidden animated:animated];
 
     [UIView animateWithDuration:0.3 animations:^{
-        UIColor *backgroundColor = hidden ? [UIColor blackColor] : [UIColor whiteColor];
+        UIColor *backgroundColor = hidden ? self.backgroundColorHidden : self.backgroundColorVisible;
         self.view.backgroundColor = backgroundColor;
         self.scrollView.backgroundColor = backgroundColor;
         for (FSImageView *imageView in _imageViews) {
@@ -465,7 +468,7 @@
 
     if (imageView == nil || (NSNull *) imageView == [NSNull null]) {
         imageView = [[FSImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, _scrollView.bounds.size.width, _scrollView.bounds.size.height)];
-        UIColor *backgroundColor = barsHidden ? [UIColor blackColor] : [UIColor whiteColor];
+        UIColor *backgroundColor = barsHidden ? self.backgroundColorHidden : self.backgroundColorVisible;
         [imageView changeBackgroundColor:backgroundColor];
         [_imageViews replaceObjectAtIndex:(NSUInteger) page withObject:imageView];
     }
