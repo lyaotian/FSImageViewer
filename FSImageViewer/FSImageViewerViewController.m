@@ -59,6 +59,7 @@
         currentPageIndex = imageIndex;
         
         self.sharingDisabled = NO;
+        self.showNumberOfItemsInTitle = YES;
     }
     return self;
 }
@@ -317,11 +318,13 @@
 
 - (void)setViewState {
 
-    NSInteger numberOfImages = [_imageSource numberOfImages];
-    if (numberOfImages > 1) {
-        self.navigationItem.title = [NSString stringWithFormat:@"%i %@ %li", pageIndex + 1, [self localizedStringForKey:@"imageCounter" withDefault:@"of"], (long)numberOfImages];
-    } else {
-        self.title = @"";
+    if(self.showNumberOfItemsInTitle) {
+        NSInteger numberOfImages = [_imageSource numberOfImages];
+        if (numberOfImages > 1) {
+            self.navigationItem.title = [NSString stringWithFormat:@"%i %@ %li", pageIndex + 1, [self localizedStringForKey:@"imageCounter" withDefault:@"of"], (long)numberOfImages];
+        } else {
+            self.title = @"";
+        }
     }
 
     if (self.titleView) {
